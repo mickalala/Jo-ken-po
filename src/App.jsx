@@ -1,9 +1,7 @@
-
+import * as C from "./styles";
 
 function App() {
-return(
-  <h1> Hello world!</h1>
-)
+  return <C.Container>Hello world!;</C.Container>;
 }
 
-export default App
+export default App;

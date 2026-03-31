@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   *{
@@ -16,17 +16,38 @@ export const GlobalStyle = createGlobalStyle`
    width:100%;
    height:100vh;
    display:flex;
-   background:pink;
+   background:#1A1A1A;
    justify-content:center;
   }
  button{
   cursor:pointer;
-  &:hover{
+ &:hover{
     opacity:0.8;
   }
-
  &:active{
     opacity:0.6;
   }
 }
+`;
+export const Container = styled.div`
+  width: 428px;
+  padding: 20px 50px;
+`;
+export const Flex = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: ${(props) => props.align || "center"};
+  justify-content: ${(props) => props.justify || "center"};
+  flex-direction: ${(props) => props.flex || "row"};
+  gap: ${(props) => props.align || "16px"};
+`;
+export const Spacer = styled.div`
+  width: 100%;
+  margin: ${(props) => props.margin || "20px"};
+`;
+export const Typography = styled.p`
+  font-weight: ${(props) => props.weight || "700"};
+  font-size: ${(props) => props.size || "18px"};
+  line-height: ${(props) => props.lineHeight || "27px"};
+  color: ${(props) => (props.primary ? "#1A1A1A" : "#ECECEC")};
 `;
