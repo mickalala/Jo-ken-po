@@ -38,7 +38,7 @@ export const Flex = styled.div`
   width: 100%;
   align-items: ${(props) => props.align || "center"};
   justify-content: ${(props) => props.justify || "center"};
-  flex-direction: ${(props) => props.flex || "row"};
+  flex-direction: ${(props) => props.direction || "row"};
   gap: ${(props) => props.align || "16px"};
 `;
 export const Spacer = styled.div`
