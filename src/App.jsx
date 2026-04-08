@@ -1,3 +1,4 @@
+import { Button } from "./components/button";
 import { Input } from "./components/input";
 import * as C from "./styles";
 
@@ -12,6 +13,7 @@ function App() {
           placeholder="Digite o nome do jogador"
           onChange={(value) => console.log(value)}
         />
+        <Button>Iniciar</Button>
       </C.Flex>
     </C.Container>
   );
