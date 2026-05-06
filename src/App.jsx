@@ -1,5 +1,6 @@
 import { Button } from "./components/button";
 import { Input } from "./components/input";
+import { Score } from "./components/score";
 import * as C from "./styles";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
           onChange={(value) => console.log(value)}
         />
         <Button>Iniciar</Button>
+        <Score userName="Jogador" scorePlayer="0" scoreComputer="0"></Score>
       </C.Flex>
     </C.Container>
   );
