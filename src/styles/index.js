@@ -39,7 +39,7 @@ export const Flex = styled.div`
   align-items: ${(props) => props.align || "center"};
   justify-content: ${(props) => props.justify || "center"};
   flex-direction: ${(props) => props.direction || "row"};
-  gap: ${(props) => props.align || "16px"};
+  gap: ${(props) => props.gap || "16px"};
 `;
 export const Spacer = styled.div`
   width: 100%;
@@ -50,4 +50,12 @@ export const Typography = styled.p`
   font-size: ${(props) => props.size || "18px"};
   line-height: ${(props) => props.lineHeight || "27px"};
   color: ${(props) => (props.primary ? "#1A1A1A" : "#ECECEC")};
+`;
+export const Rules = styled.button`
+  width: 100%;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  color: #ececec;
+  background-color: transparent;
 `;
