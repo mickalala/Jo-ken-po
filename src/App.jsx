@@ -1,10 +1,23 @@
+import { useState } from "react";
 import { Button } from "./components/button";
 import { Handsbuttons } from "./components/hands-game";
 import { Input } from "./components/input";
+import { Modal } from "./components/modal";
 import { Score } from "./components/score";
 import * as C from "./styles";
 
+const message = [
+  {
+    title: "Regras",
+    message:
+      "Jo ken pô, é um jogo que as pessoas jogam com as mãos, escolhendo entre pedra (mão fechada), tesoura (dois dedos a frente) e papel (mão espalmada). O jogo é similar ao 'par ou ímpar', porém com uma variável a mais. Funciona assim: Cada jogador escolhe uma opção. A tesoura corta o papel, mas é quebrada pela pedra. A pedra quebra a tesoura, mas é amassada pelo peapel. Por fim, o papel é cortado pela tesoura e embrulha a pedra. O desafio aqui é vencer o computador 10 vezes! Faça a sua escolha e boa sorte!",
+  },
+];
+
 function App() {
+  const [title, setTitle] = useState(message[0].title);
+  const [text, setText] = useState(message[0].message);
+  const [open, setOpen] = useState(false);
   const actions = [
     {
       value: 1,
@@ -47,13 +60,19 @@ function App() {
           <C.Typography weight="700" size="22px">
             Inicie o Jogo!
           </C.Typography>
-          <C.Rules>Regras</C.Rules>
-        </C.Flex>{" "}
+          <C.Rules onClick={() => setOpen(true)}>Regras</C.Rules>
+        </C.Flex>
         <Handsbuttons
           actions={actions}
           disabled={false}
           onClick={(value) => handleClick(value)}
         ></Handsbuttons>
+        <Modal
+          open={open}
+          title={title}
+          message={text}
+          handleModal={() => setOpen(false)}
+        />
       </C.Flex>
     </C.Container>
   );
