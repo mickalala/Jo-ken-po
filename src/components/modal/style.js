@@ -6,8 +6,9 @@ export const ModalStyled = styled.div`
   background-color: #ececec;
   padding: 16px;
   position: absolute;
-  top: ${(props) => (props.open ? "70px" : "-100%")};
-  transition: 0.5 ease;
+  top: ${(props) => (props.open ? "5%" : "-100%")};
+  opacity: ${(props) => (props.open ? "1" : "0")};
+  transition: 0.7 ease;
   z-index: 2;
 `;
 
