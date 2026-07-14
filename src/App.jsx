@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "./components/button";
 import { Handsbuttons } from "./components/hands-game";
 import { Input } from "./components/input";
@@ -15,6 +15,14 @@ const messages = {
   user: {
     title: "Usuário",
     message: "Preencha um nome para o jogador.",
+  },
+  userWin: {
+    title: "Vitória!",
+    message: "Prabéns! Jogue novamente se conta com a sorte.",
+  },
+  computerWin: {
+    title: "Perdeu!",
+    message: "Que pena! Tente novamente se conta com a sorte dessa vez.",
   },
 };
 const actions = [
@@ -34,6 +42,7 @@ const actions = [
     description: "Paper",
   },
 ];
+
 const valueTypeEnum = {
   ROCK: 1,
   SCISSORS: 2,
@@ -52,6 +61,25 @@ function App() {
 
   const [userName, setUserName] = useState("Jogador");
   const [playGame, setPlayGame] = useState(true);
+  const SCORE_TO_WIN = 10;
+
+  useEffect(() => {
+    const checkWinner = () => {
+      const userWin = userScoreValue === SCORE_TO_WIN;
+      const computerWin = computerScoreValue === SCORE_TO_WIN;
+      if (userWin) handleModal("userWin");
+      if (computerWin) handleModal("computerWin");
+      if (userWin || computerWin) {
+        setTextInit("Jogar de novo!");
+        setComputerAction("❓");
+        setUserAction("❓");
+        setPlayGame(true);
+        setUserScoreValue(0);
+        setComputerScoreValue(0);
+      }
+    };
+    checkWinner();
+  }, [userScoreValue, computerScoreValue]);
 
   const handleModal = (type) => {
     if (!type) {
@@ -124,7 +152,7 @@ function App() {
           onChange={handleUserName}
         />
         <Button onClick={() => startGame()}>
-          {playGame ? "Iniciar" : "Parar"}
+          {playGame ? "Iniciar" : "Rodando"}
         </Button>
         <Score
           userName={userName}
