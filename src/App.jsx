@@ -34,10 +34,15 @@ const actions = [
     description: "Paper",
   },
 ];
+const valueTypeEnum = {
+  ROCK: 1,
+  SCISSORS: 2,
+  PAPER: 3,
+};
 
 function App() {
-  const [title, setTitle] = useState(messages.rules.title);
-  const [text, setText] = useState(messages.rules.message);
+  const [title, setTitle] = useState("");
+  const [text, setText] = useState("");
   const [open, setOpen] = useState(false);
   const [textInit, setTextInit] = useState("Iniciar Jogo!");
   const [userAction, setUserAction] = useState("❓");
@@ -62,13 +67,36 @@ function App() {
 
   const computerRandomAction = () => {
     const number = Math.floor(Math.random() * actions.length);
-    console.log(number);
-    return actions[number].label;
+    return actions[number];
   };
 
   const handleActionClick = (value) => {
     setUserAction(value.label);
-    setComputerAction(computerRandomAction());
+    const computerValue = computerRandomAction();
+    setComputerAction(computerValue.label);
+    checkWinner(value.value, computerValue.value);
+  };
+
+  const checkWinner = (userActionValue, computerActionValue) => {
+    const playerPaperWin =
+      userActionValue === valueTypeEnum.PAPER &&
+      computerActionValue === valueTypeEnum.ROCK;
+    const playerScissorWin =
+      userActionValue == valueTypeEnum.SCISSORS &&
+      computerActionValue == valueTypeEnum.PAPER;
+    const playerRockWin =
+      userActionValue === valueTypeEnum.ROCK &&
+      computerActionValue === valueTypeEnum.SCISSORS;
+    const drawerResult = userActionValue === computerActionValue;
+    const playerWin = playerPaperWin || playerScissorWin || playerRockWin;
+    if (drawerResult) return setTextInit("Empate, Jogue Novamente!");
+    if (playerWin) {
+      setUserScoreValue((state) => state + 1);
+      return setTextInit("Vitória!");
+    } else {
+      setComputerScoreValue((state) => state + 1);
+      return setTextInit("Perdeu");
+    }
   };
 
   const handleUserName = (value) => {

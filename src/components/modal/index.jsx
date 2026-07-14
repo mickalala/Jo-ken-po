@@ -7,7 +7,6 @@ export const Modal = ({ open, handleModal, title, message }) => {
       <Flex direction={"column"}>
         <Typography primary size={"32px"} weight="400">
           {title}
-          <Spacer />
         </Typography>
         <Typography primary weight="400">
           {message}
